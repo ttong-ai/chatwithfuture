@@ -1,11 +1,10 @@
 const express = require('express');
-const path = require('path');
-
 const app = express();
+const path = require('path');
 
 // viewed at http://localhost:3000
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/index.html'));
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.listen(3000, () => {
