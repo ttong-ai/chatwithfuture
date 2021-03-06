@@ -1,22 +1,19 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const app = express();
 
-app.get('/Home.html', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/Home.html'));
-});
+app.set('view engine', 'pug');
+app.set('views', 'web')
 
-app.get('/About.html', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/About.html'));
-});
+// using the 'body-parser' middleware
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'web')));
 
-app.get('/Contact.html', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/Contact.html'));
-});
-
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/web/index.html'));
+app.use('/', (req, res, next) => {
+  res.status(404).sendFile(path.join(rootDir, 'web', '404.html'));
 });
 
 app.listen(3000, () => {
