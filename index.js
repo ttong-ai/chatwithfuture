@@ -3,7 +3,18 @@ const path = require('path');
 
 const app = express();
 
-// viewed at http://localhost:3000
+app.get('/Home.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/web/Home.html'));
+});
+
+app.get('/About.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/web/About.html'));
+});
+
+app.get('/Contact.html', function(req, res) {
+    res.sendFile(path.join(__dirname + '/web/Contact.html'));
+});
+
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/web/index.html'));
 });
